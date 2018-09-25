@@ -1196,7 +1196,7 @@ body {
     height: 120px;
 }
 
-//2
+
 .down--ingridients {
     display: flex;
     flex-wrap: wrap;
@@ -1284,7 +1284,8 @@ body {
 }
 
 .pizza-menu--list__line {
-    width: 880px;
+    max-width: 880px;
+    width: 90vw;
     height: 3px;
     background-color: $red-second;
     margin: 60px 0;
