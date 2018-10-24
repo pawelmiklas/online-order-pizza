@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +18,7 @@
     <script src="../node_modules/aos/dist/aos.js"></script>
     <script src="../countUp.js-1.9.3/countUp.js"></script>
 
-    
+
 </head>
 
 <body>
@@ -41,7 +44,23 @@
             <li><a href="#pizza-builder" class="navbar--list__link">pizza builder</a></li>
             <li><a href="#about-us" class="navbar--list__link">about us</a></li>
             <li><a href="#contact" class="navbar--list__link">contact</a></li>
-            <li><a href="login.html" class="navbar--list__link special">login</a></li>
+            <!-- <li><a href="login.php" class="navbar--list__link special">login</a></li> -->
+            <li class="list-special">
+                <?php
+
+                    if((isset($_SESSION["zalogowany"]))&&($_SESSION["zalogowany"]==True)){
+                        echo '<p>'.$_SESSION['user'].'</p>';
+                        // echo '<i class="far fa-user fa-2x"></i>';
+                        // echo '<a href="account-settings.php"><p>'.$_SESSION['user'].'</p></a>';
+                        echo '<a href="wyloguj.php" class="navbar--list__link link-special"><input type="button" value="Logout" class="subpage-input"></a>';
+                    //                  echo "<span>".$_SESSION['user']."</span>";
+                    }
+                    else{
+                        // echo '<input type="button" id="btn-to-login" value="Log In" class="subpage-input">';
+                        echo '<a href="login.php" class="navbar--list__link special" value="Log In">login</a>';
+                    }
+                    ?>
+            </li>
         </ul>
     </nav>
     <main>
@@ -359,10 +378,10 @@
                 <h1>Sign up for the newsletter and coupons!</h1>
             </div>
             <div class="newsletter--text__send-box">
-                    <form action="">
-                            <input type="email" class="send-box--input" placeholder="Enter your email address" required>
-                            <input type="submit" class="send-box--button" value="subscribe">
-                    </form>
+                <form action="">
+                    <input type="email" class="send-box--input" placeholder="Enter your email address" required>
+                    <input type="submit" class="send-box--button" value="subscribe">
+                </form>
             </div>
         </div>
     </section>

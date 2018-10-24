@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,12 +34,12 @@
     </nav>
     <section class="login">
         <div class="login--form">
-            <form action="">
+            <form action="logowanie.php" id="login__form" method="post">
                 <label for="login">login</label>
-                <input type="text" id="login" required>
+                <input type="text" id="login" required name="login">
                 <label for="password">password</label>
-                <input type="password" id="password" required>
-                <input type="submit" value="Sign in">
+                <input type="password" id="password" required name="haslo">
+                <input type="submit" value="Sign in" name="submit">
             </form>
         </div>
     </section>

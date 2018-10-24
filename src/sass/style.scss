@@ -69,6 +69,13 @@ body {
 
 }
 
+.list-special{
+    color: white;
+    display: flex;
+    p{
+        margin-right: 10px;
+    }
+}
 // navigation
 .navbar--list__link {
     padding-right: 20px;
@@ -1399,6 +1406,7 @@ body {
         font-size: 12px;
         text-align: center;
         width: 190px;
+        margin-bottom: 10px;
     }
 }
 
@@ -1437,7 +1445,7 @@ body {
         }
     }
 
-    button {
+    input[type=submit] {
         text-transform: uppercase;
         width: 70px;
         height: 25px;
