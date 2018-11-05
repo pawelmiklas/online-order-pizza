@@ -20,16 +20,16 @@
 <body>
     <nav class="navbar">
         <div class="navbar--row">
-            <a href="index.html" class="navbar--logo">diavola</a>
+            <a href="index.php" class="navbar--logo">diavola</a>
             <span id="navbar--toggle">
                 <i class="fas fa-bars"></i>
             </span>
         </div>
         <ul id="navbar--list">
-            <li><a href="index.html" class="navbar--list__link">home</a></li>
+            <li><a href="index.php" class="navbar--list__link">home</a></li>
             <li><a href="#" class="navbar--list__link">pizza menu</a></li>
-            <li><a href="pizza-builder.html" class="navbar--list__link">pizza builder</a></li>
-            <li><a href="index.html#about-us" class="navbar--list__link">about us</a></li>
+            <li><a href="pizza-builder.php" class="navbar--list__link">pizza builder</a></li>
+            <li><a href="index.php#about-us" class="navbar--list__link">about us</a></li>
             <li><a href="#contact" class="navbar--list__link">contact</a></li>
             <li class="list-special">
                 <?php
@@ -74,15 +74,15 @@
                     $_SESSION{'description' . $i} = $row['Description'];
                     $_SESSION{'price' . $i} = $row['Price'];
                     // $connection->close();
-                        echo '<div class="pizza-menu--list__item">
-                            <img src="pic/pizza-1.png" alt="kimchi">
-                            <h2>
+                        echo '<div class="pizza-menu--list__item" data-name='.$_SESSION["name$i"].' data-price='.$_SESSION["price$i"].' data-fixedprice='.$_SESSION["price$i"].'>
+                            <img src="pic/pizza-1.png" alt='.$_SESSION["name$i"].'>
+                            <h2 class="name-of-pizza" >
                                 '.$_SESSION["name$i"].'
                             </h2>
                             <p>
                                 '.$_SESSION["description$i"].'
                             </p>
-                            <div class="price">
+                            <div class="price price-of-pizza" >
                                 <h2>
                                     $'.$_SESSION["price$i"].'
                                 </h2>
@@ -90,14 +90,13 @@
                             <div class="item--size-to-order__hide"></div>
                             <div class="item--size-to-order">
                                 <form action="">
-                                    <select name="size" id="">
-                                        <option value="small">small</option>
-                                        <option value="medium">medium</option>
-                                        <option value="large">large</option>
-                                        <option value="jumbo">jumbo</option>
-                                        <option value="party-size">party size</option>
+                                    <select name="size" class='.$_SESSION["name$i"].' data-price='.$_SESSION["price$i"].'>
+                                        <option value="0" selected>small</option>
+                                        <option value="3">medium</option>
+                                        <option value="5">large</option>
+                                        <option value="7">jumbo</option>
+                                        <option value="9">party size</option>
                                     </select>
-                                    <input type="submit" value="ADD" class="add-pizza-btn"></input>
                                 </form>
                             </div>
                         </div>';
@@ -115,36 +114,15 @@
             <div class="order--products-list" id="list-of-pizzas">
                 <div class="order--products-list__item">
                     <div class="item--item-with-amount">
-                        <p>pizza &nbsp;</p>
-                        <p> x1</p>
+                        <p><p>
+                        <p></p>
                     </div>
-                    <p>30.00</p>
-                </div>
-                <div class="order--products-list__item">
-                    <div class="item--item-with-amount">
-                        <p>pizza &nbsp;</p>
-                        <p> x1</p>
-                    </div>
-                    <p>30.00</p>
-                </div>
-                <div class="order--products-list__item">
-                    <div class="item--item-with-amount">
-                        <p>pizza &nbsp;</p>
-                        <p> x1</p>
-                    </div>
-                    <p>30.00</p>
-                </div>
-                <div class="order--products-list__item">
-                    <div class="item--item-with-amount">
-                        <p>pizza &nbsp;</p>
-                        <p> x1</p>
-                    </div>
-                    <p>30.00</p>
+                    <p></p>
                 </div>
             </div>
             <div class="order-products-price fixed-bottom">
                 <h2>order total</h2>
-                <h2>$ 43.00</h2>
+                <h2 id="total-price">$ 0.00</h2>
             </div>
             <input type="submit" value="ADD TO CARD">
             <input type="submit" value="BUY" id="buy-btn">

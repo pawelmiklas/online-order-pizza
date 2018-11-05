@@ -1,35 +1,27 @@
+import { checkout } from "./checkout.js";
 const SizeOfCrust = (function() {
-  let all_sizes_element = document.querySelectorAll(".down--sizes__element");
-  let element = document.querySelectorAll(".element");
-  let element_par = document.querySelectorAll(".element>p");
-  let par = document.querySelectorAll(".down--sizes__element>p");
+  let allSizesElement = document.querySelectorAll(".down--sizes__element");
   let sizeCrust = document.querySelector("#size-crust-pizza");
-  const sizesCrustTab = ["Small", "Medium", "large", "Jumbo", "Party Size"];
-  let x = 0;
-  for (let i = 0; i < all_sizes_element.length; i++) {
-    all_sizes_element[i].addEventListener("click", function() {
-      if (this.classList.contains("color-active") && x == i) {
-        element[i].style.border = "3px solid rgba(212, 92, 21, 1)";
-        par[i].style.color = "rgba(212, 92, 21, 1)";
-        element_par[i].style.color = "rgba(212, 92, 21, 1)";
-        this.classList.remove("color-active");
-        element[x].style.border = "3px solid white";
-        par[x].style.color = "white";
-        element_par[x].style.color = "white";
-        x = i;
-      } else {
-        // console.log(sizeCrust);
-        sizeCrust.innerHTML = sizesCrustTab[i];
-        element[x].style.border = "3px solid white";
-        par[x].style.color = "white";
-        element_par[x].style.color = "white";
-        this.classList.add("color-active");
-        element[i].style.border = "3px solid rgba(212, 92, 21, 1)";
-        par[i].style.color = "rgba(212, 92, 21, 1)";
-        element_par[i].style.color = "rgba(212, 92, 21, 1)";
-        x = i;
+  let priceCrust = document.querySelector("#price-crust-pizza");
+  let orderTotalPrice = document.querySelector("#order-total-price");
+  let i = 0;
+  allSizesElement.forEach(item => {
+    item.addEventListener("click", () => {
+      if (item.classList.contains("checked-size")) {
+        return;
       }
+      allSizesElement.forEach(item => {
+        item.classList.remove("checked-size");
+      });
+      checkout.totalPrice -= i;
+      item.classList.add("checked-size");
+      i = parseFloat(item.getAttribute("data-price"));
+      checkout.totalPrice += parseFloat(item.getAttribute("data-price"));
+      checkout.pizzaSize = item.getAttribute("data-value");
+      sizeCrust.innerHTML = item.getAttribute("data-value");
+      priceCrust.innerHTML = item.getAttribute("data-price");
+      orderTotalPrice.innerHTML = `$${checkout.totalPrice.toFixed(2)}`;
     });
-  }
+  });
 })();
 export { SizeOfCrust };

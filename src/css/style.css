@@ -88,7 +88,7 @@ body {
 
 .navbar--list__link:after {
   position: absolute;
-  content: '';
+  content: "";
   width: 0px;
   left: 0;
   bottom: 0;
@@ -211,7 +211,7 @@ body {
   flex-direction: column; }
 
 .info--title {
-  font-family: 'Abril Fatface', cursive;
+  font-family: "Abril Fatface", cursive;
   color: #e9b300;
   font-size: calc(0.5625vw + 16.2px);
   text-align: center;
@@ -547,7 +547,7 @@ body {
       color: #d45c15;
       text-decoration: none;
       padding-left: 27px; }
-  .pizza-builder__checkout input[type=submit] {
+  .pizza-builder__checkout input[type="submit"] {
     width: 100%;
     margin-top: 20px;
     height: 35px;
@@ -1028,6 +1028,12 @@ body {
   align-items: flex-end;
   flex-wrap: wrap; }
 
+.checked-size p {
+  color: #d45c15; }
+
+.checked-size .element {
+  border: 3px solid #d45c15; }
+
 .down--sizes__element {
   padding: 0 20px;
   display: flex;
@@ -1144,6 +1150,20 @@ body {
   background-color: #d45c15;
   margin: 60px 0; }
 
+.pizza-menu--list__item-unchecked {
+  border: 0; }
+  .pizza-menu--list__item-unchecked .item--size-to-order__hide {
+    display: block; }
+  .pizza-menu--list__item-unchecked .item--size-to-order {
+    display: none; }
+
+.pizza-menu--list__item-checked {
+  border: 3px solid #e9b300 !important; }
+  .pizza-menu--list__item-checked .item--size-to-order__hide {
+    display: none; }
+  .pizza-menu--list__item-checked .item--size-to-order {
+    display: flex; }
+
 .pizza-menu--list__item {
   display: flex;
   flex-direction: column;
@@ -1193,23 +1213,13 @@ body {
     background-color: transparent;
     color: white;
     text-transform: capitalize;
-    width: 100px;
+    width: 160px;
     height: 25px;
     padding: 0 0 0 5px;
     cursor: pointer; }
     .item--size-to-order select option {
       background-color: #2c2c2c;
       cursor: pointer; }
-  .item--size-to-order input[type=submit] {
-    text-transform: uppercase;
-    width: 70px;
-    height: 25px;
-    margin-left: 5px;
-    background-color: #e9b300;
-    border: none;
-    font-weight: bold;
-    font-size: 13px;
-    cursor: pointer; }
 
 .pizza-menu__checkout {
   align-self: flex-start;
@@ -1246,7 +1256,7 @@ body {
       color: #d45c15;
       text-decoration: none;
       padding-left: 27px; }
-  .pizza-menu__checkout input[type=submit] {
+  .pizza-menu__checkout input[type="submit"] {
     width: 100%;
     margin-top: 20px;
     height: 35px;
@@ -1420,7 +1430,7 @@ body {
       color: #d45c15;
       text-decoration: none;
       padding-left: 27px; }
-  .checkout--side__order input[type=submit] {
+  .checkout--side__order input[type="submit"] {
     width: 100%;
     margin-top: 20px;
     height: 35px;
@@ -1494,7 +1504,7 @@ body {
       padding: 0 10px;
       outline: none;
       color: white; }
-    .login--form form input[type=submit] {
+    .login--form form input[type="submit"] {
       text-transform: uppercase;
       width: 100%;
       height: 45px;
