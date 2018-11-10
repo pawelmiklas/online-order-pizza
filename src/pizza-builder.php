@@ -20,7 +20,7 @@
 <body>
     <nav class="navbar">
         <div class="navbar--row">
-            <a href="index.html" class="navbar--logo">diavola</a>
+            <a href="index.php" class="navbar--logo">diavola</a>
             <span id="navbar--toggle">
                 <i class="fas fa-bars"></i>
             </span>
@@ -38,9 +38,9 @@
         <h1>Pizza builder</h1>
         <div class="banner-pizza-builder--breadcrumb">
             <ul>
-                <li><a href="index.html">home</a></li>
+                <li><a href="index.php">home</a></li>
                 <li>></li>
-                <li><a href="pizza-builder.html">pizza builder</a></li>
+                <li><a href="pizza-builder.php">pizza builder</a></li>
             </ul>
         </div>
     </section>
@@ -116,7 +116,7 @@
                                 $_SESSION{'price' . $i} = $row['Price'];
                                 // $connection->close();
                                     echo '
-                                    <div class="down--ingridients__sauce without" value='.$_SESSION["name$i"].'>
+                                    <div class="down--ingridients__sauce without" value='.$_SESSION["name$i"].' data-price='.$_SESSION["price$i"].'>
                                         <i class="fas fa-check-circle fa-2x"></i>
                                         <img src="pic/'.$_SESSION["name$i"].'.png" alt='.$_SESSION["name$i"].'>
                                         <h2>'.$_SESSION["name$i"].'</h2>
@@ -157,7 +157,7 @@
                                 $_SESSION{'price' . $i} = $row['Price'];
                                 // $connection->close();
                                     echo '
-                                    <div class="down--ingridients__sauce without" value='.$_SESSION["name$i"].'>
+                                    <div class="down--ingridients__sauce without" value='.$_SESSION["name$i"].' data-price='.$_SESSION["price$i"].'>
                                         <i class="fas fa-check-circle fa-2x "></i>
                                         <img src="pic/'.$_SESSION["name$i"].'.png" alt='.$_SESSION["name$i"].'>
                                         <h2>'.$_SESSION["name$i"].'</h2>
@@ -198,12 +198,12 @@
                                 $_SESSION{'price' . $i} = $row['Price'];
                                 // $connection->close();
                                     echo '
-                                    <div class="down--ingridients__sauce without" value='.$_SESSION["name$i"].'>
+                                    <div class="down--ingridients__sauce without" value='.$_SESSION["name$i"].' data-price='.$_SESSION["price$i"].' >
                                         <i class="fas fa-check-circle fa-2x "></i>
                                         <img src="pic/'.$_SESSION["name$i"].'.png" alt='.$_SESSION["name$i"].'>
                                         <h2>'.$_SESSION["name$i"].'</h2>
                                         <p>'.$_SESSION["description$i"].'</p>
-                                        <div class="price" value='.$_SESSION["price$i"].'>
+                                        <div class="price" >
                                             <h2>$'.$_SESSION["price$i"].'</h2>
                                         </div>
                                     </div>
@@ -241,7 +241,7 @@
                 <h2>order total</h2>
                 <h2 id="order-total-price">$ 0.00</h2>
             </div>
-            <input type="submit" value="ADD TO CARD">
+            <a href="checkout.php"><input type="submit" value="ADD TO CARD"></a>
             <input type="submit" value="ADD AND CREATE ANOTHER PIZZA" id="buy-btn2">
         </div>
     </section>

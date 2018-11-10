@@ -1,8 +1,7 @@
 @import "partials/variables";
 @import "partials/mixins";
 
-@include google-font(
-  "Ralevay|Fredericka+the+Great|Abril+Fatface|Kaushan+Script"
+@include google-font("Ralevay|Fredericka+the+Great|Abril+Fatface|Kaushan+Script"
 );
 
 * {
@@ -73,10 +72,12 @@ body {
 .list-special {
   color: white;
   display: flex;
+
   p {
     margin-right: 10px;
   }
 }
+
 // navigation
 .navbar--list__link {
   padding-right: 20px;
@@ -581,6 +582,7 @@ body {
   position: relative;
   z-index: 100;
   flex-wrap: wrap;
+
   button {
     width: 180px;
     margin-top: 70px;
@@ -598,7 +600,15 @@ body {
       text-decoration: none;
     }
   }
+
+  #build-pizza-btn {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    text-decoration: none;
+  }
 }
+
 .pizza-builder__checkout {
   align-self: flex-start;
   margin-top: 80px;
@@ -609,10 +619,12 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
   padding: 20px 20px;
   min-height: 320px;
+
   @media screen and (max-width: 1316px) {
     width: 100%;
     margin: 0 50px 50px 50px;
   }
+
   h1 {
     font-family: $headline-font;
     color: $red-color;
@@ -657,6 +669,7 @@ body {
     font-size: 13px;
     font-weight: bold;
   }
+
   #buy-btn2 {
     width: 100%;
     margin-top: 20px;
@@ -669,6 +682,7 @@ body {
     font-size: 13px;
     font-weight: bold;
   }
+
   .fixed-bottom {
     margin-bottom: 0px;
   }
@@ -771,9 +785,16 @@ body {
   flex-direction: row;
   // margin-bottom: 30px;
   display: flex;
+
   @media screen and (max-width: 770px) {
     flex-direction: column;
   }
+}
+
+.collapse-on {
+  margin-bottom: 30px !important;
+  opacity: 1 !important;
+  height: auto !important;
 }
 
 .ingridients--list__down-hide {
@@ -1206,6 +1227,7 @@ body {
   p {
     color: $red-second;
   }
+
   .element {
     border: 3px solid $red-second;
   }
@@ -1362,18 +1384,23 @@ body {
 
 .pizza-menu--list__item-unchecked {
   border: 0;
+
   .item--size-to-order__hide {
     display: block;
   }
+
   .item--size-to-order {
     display: none;
   }
 }
+
 .pizza-menu--list__item-checked {
   border: 3px solid rgba(233, 179, 0, 1) !important;
+
   .item--size-to-order__hide {
     display: none;
   }
+
   .item--size-to-order {
     display: flex;
   }
@@ -1389,6 +1416,7 @@ body {
   margin: 10px;
   cursor: pointer;
   border: 3px solid transparent;
+
   &:hover {
     border: 3px solid $red-color;
   }
@@ -1424,10 +1452,10 @@ body {
   }
 }
 
-.item--size-to-order__hide {
-  width: 175px;
-  height: 35px;
-}
+// .item--size-to-order__hide {
+//   width: 175px;
+//   height: 35px;
+// }
 
 .item--size-to-order {
   display: flex;
@@ -1436,7 +1464,14 @@ body {
   align-items: center;
   margin-top: 10px;
   display: none;
-  
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   select {
     background-color: transparent;
     color: $font-color;
@@ -1452,17 +1487,59 @@ body {
     }
   }
 
-//   input[type="submit"] {
-//     text-transform: uppercase;
-//     width: 70px;
-//     height: 25px;
-//     margin-left: 5px;
-//     background-color: $red-color;
-//     border: none;
-//     font-weight: bold;
-//     font-size: 13px;
-//     cursor: pointer;
-//   }
+  div {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: $font-color;
+    // height: 25px;
+    line-height: 25px;
+    display: flex;
+    flex-direction: row;
+
+    a {
+      text-decoration: none;
+      color: $font-color;
+      padding: 0 10px;
+      font-size: 1.3rem;
+      display: block;
+    }
+
+    input {
+      width: 40px;
+      background-color: transparent;
+      color: $font-color;
+      border: 1px solid $font-color;
+      height: 25px;
+      text-align: center;
+      // padding: 0 8px;
+      cursor: no-drop;
+    }
+
+    input[type="button"] {
+      text-transform: uppercase;
+      width: 60px;
+      height: 25px;
+      margin-left: 5px;
+      background-color: $red-color;
+      border: none;
+      font-weight: bold;
+      font-size: 13px;
+      cursor: pointer;
+
+    }
+  }
+
+  //   input[type="submit"] {
+  //     text-transform: uppercase;
+  //     width: 70px;
+  //     height: 25px;
+  //     margin-left: 5px;
+  //     background-color: $red-color;
+  //     border: none;
+  //     font-weight: bold;
+  //     font-size: 13px;
+  //     cursor: pointer;
+  //   }
 }
 
 .pizza-menu__checkout {
@@ -1474,10 +1551,12 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
   padding: 20px 20px;
   min-height: 320px;
+
   @media screen and (max-width: 1316px) {
     width: 100%;
     margin: 0 50px 50px 50px;
   }
+
   h1 {
     font-family: $headline-font;
     color: $red-color;
@@ -1522,6 +1601,7 @@ body {
     font-size: 13px;
     font-weight: bold;
   }
+
   #buy-btn {
     width: 100%;
     margin-top: 20px;
@@ -1534,10 +1614,12 @@ body {
     font-size: 13px;
     font-weight: bold;
   }
+
   .fixed-bottom {
     margin-bottom: 0px;
   }
 }
+
 //checkout
 .checkout {
   width: 100%;
@@ -1560,10 +1642,12 @@ body {
 .checkout--side__billing-details {
   width: 650px;
   margin-right: 30px;
+
   @media screen and (max-width: 1056px) {
     margin: 0;
     width: 100%;
   }
+
   h1 {
     font-family: $headline-font;
     color: $red-color;
@@ -1702,9 +1786,11 @@ body {
   background-color: rgba(0, 0, 0, 0.4);
   padding: 20px 20px;
   height: 620px;
+
   @media screen and (max-width: 1056px) {
     width: 100%;
   }
+
   h1 {
     font-family: $headline-font;
     color: $red-color;
@@ -1775,7 +1861,7 @@ body {
     text-transform: capitalize;
   }
 
-  p:last-child {
+  p:nth-last-child(2) {
     color: $red-second;
     text-transform: none;
   }
@@ -1810,6 +1896,7 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
   padding: 30px;
   margin: 0 40px;
+
   form {
     display: flex;
     flex-direction: column;

@@ -27,13 +27,13 @@
             <h1>Get it while it's hot!</h1>
             <h2>You can create your custom pizzas <br> with the same great quality.</h2>
             <div class="banner--info__btn">
-                <a href="pizza-menu.html"><button class="banner--info__btn animated rubberBand delay-2s">ORDER ONLINE</button></a>
+                <a href="pizza-menu.php"><button class="banner--info__btn animated rubberBand delay-2s">ORDER ONLINE</button></a>
             </div>
         </div>
     </section>
     <nav class="navbar">
         <div class="navbar--row">
-            <a href="index.html" class="navbar--logo">diavola</a>
+            <a href="index.php" class="navbar--logo">diavola</a>
             <span id="navbar--toggle">
                 <i class="fas fa-bars"></i>
             </span>
@@ -155,7 +155,7 @@
                             <i class="fas fa-angle-down fa-lg fa-angle"></i>
                         </div>
                     </div>
-                    <div class="ingridients--list__down ingridients--list__down-hide">
+                    <div class="ingridients--list__down ingridients--list__down-hide ">
                         <div class="down--border">
                             <div class="down--pic">
                                 <img src="pic/pizza-41.jpg" alt="pizza">
@@ -271,7 +271,7 @@
                     </div>
                 </div>
             </div>
-            <a href="pizza-builder.html"><button>create your own pizza</button></a>
+            <a href="pizza-builder.php" id="build-pizza-btn"><button>create your own pizza</button></a>
         </section>
         <section class="ingridients">
             <div class="ingridients--row" id="chuj">

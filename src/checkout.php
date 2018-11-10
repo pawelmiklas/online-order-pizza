@@ -158,13 +158,13 @@
     <link rel="icon" href="pic/favicon.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
         crossorigin="anonymous">
-   
+
 </head>
 
 <body>
     <nav class="navbar">
         <div class="navbar--row">
-            <a href="index.html" class="navbar--logo">diavola</a>
+            <a href="index.php" class="navbar--logo">diavola</a>
             <span id="navbar--toggle">
                 <i class="fas fa-bars"></i>
             </span>
@@ -182,7 +182,7 @@
         <h1>Checkout</h1>
         <div class="banner-pizza-builder--breadcrumb">
             <ul>
-                <li><a href="index.html">home</a></li>
+                <li><a href="index.php">home</a></li>
                 <li>></li>
                 <li><a href="#">Checkout</a></li>
             </ul>
@@ -202,8 +202,8 @@
                     </select>
                     <div class="half-inputs">
                         <div class="half-inputs--element">
-                        <label for="last-name">first name*</label>
-                        <input required type="text" name="imie_rej" value="<?php
+                            <label for="last-name">first name*</label>
+                            <input required type="text" name="imie_rej" value="<?php
                          if(isset($_SESSION['zap_imie']))
                          {
                              echo $_SESSION['zap_imie'];
@@ -237,40 +237,41 @@
                              unset ($_SESSION['zap_login']);
                             }
                             
-                            ?>"> 
-                            </div>
-                            <div class="half-inputs--element">
+                            ?>">
+                        </div>
+                        <div class="half-inputs--element">
 
-                                <label for="haslo_rej">Hasło</label>
-                                <input  class="full-inputs" required type="password" name="haslo_rej" value="<?php
+                            <label for="haslo_rej">Hasło</label>
+                            <input class="full-inputs" required type="password" name="haslo_rej" value="<?php
                          if(isset($_SESSION['zap_haslo1']))
                          {
                              echo $_SESSION['zap_haslo1'];
                              unset ($_SESSION['zap_haslo1']);
                             }
                             
-                            ?>"> 
-                            </div>
-                            
-                            
+                            ?>">
                         </div>
-                            <label for="miasto_rej2">Hasło</label>
-                <input required class="full-inputs" type="password" name="haslo_rej2" value="<?php
+
+
+                    </div>
+                    <label for="miasto_rej2">Hasło</label>
+                    <input required class="full-inputs" type="password" name="haslo_rej2" value="<?php
                          if(isset($_SESSION['zap_haslo2']))
                          {
                              echo $_SESSION['zap_haslo2'];
                              unset ($_SESSION['zap_haslo2']);
                             }
 
-                            ?>"> <br>
+                            ?>">
+                    <br>
                     <label for="address">address*</label>
                     <input type="text" class="full-inputs" placeholder="Street address" id="address" required>
-                    
-                   
+
+
                     <div class="half-inputs">
                         <div class="half-inputs--element">
-                        <label for="town-city">town/city*</label>
-                    <input required type="text" name="miasto_rej" value="<?php
+                            <label for="town-city">town/city*</label>
+                            <input required type="text" name="miasto_rej" value="<?php
                          if(isset($_SESSION['zap_miasto']))
                          {
                              echo $_SESSION['zap_miasto'];
@@ -301,7 +302,7 @@
                              unset ($_SESSION['zap_email']);
                             }
 
-                            ?>"> 
+                            ?>">
                         </div>
                         <div class="half-inputs--element">
                             <label for="phone">phone*</label>
@@ -319,14 +320,14 @@
                         <input required type="checkbox" name="check">
                         <label for="">Akceptuję regulamin</label>
                         &nbsp;
-                            <?php
+                        <?php
                                 if(isset($_SESSION['blad_regulamin']))
                                 {
                                     echo "<div class='blad form__error'>".$_SESSION['blad_regulamin']."</div>";
-                                    unset($_SESSION['blad_regulamin']);
+                unset($_SESSION['blad_regulamin']);
                                 }
                             ?>
-                    </span>
+                        </span>
                     <!-- <div class="checkbox-element">
                         <input type="checkbox" id="create-account" placeholder="create-account">
                         <label for="create-account">Create an account?</label>
@@ -338,8 +339,6 @@
                 </form>
             </div>
 
-
-
             <div class="checkout--side__order">
                 <h1>Your Order</h1>
                 <div class="order--products-total">
@@ -347,38 +346,10 @@
                     <p>total</p>
                 </div>
                 <div class="order--products-list">
-                    <div class="order--products-list__item">
-                        <div class="item--item-with-amount">
-                            <p>pizza &nbsp;</p>
-                            <p> x1</p>
-                        </div>
-                        <p>30.00</p>
-                    </div>
-                    <div class="order--products-list__item">
-                        <div class="item--item-with-amount">
-                            <p>pizza &nbsp;</p>
-                            <p> x1</p>
-                        </div>
-                        <p>30.00</p>
-                    </div>
-                    <div class="order--products-list__item">
-                        <div class="item--item-with-amount">
-                            <p>pizza &nbsp;</p>
-                            <p> x1</p>
-                        </div>
-                        <p>30.00</p>
-                    </div>
-                    <div class="order--products-list__item">
-                        <div class="item--item-with-amount">
-                            <p>pizza &nbsp;</p>
-                            <p> x1</p>
-                        </div>
-                        <p>30.00</p>
-                    </div>
                 </div>
                 <div class="order-products-price">
                     <h2>order total</h2>
-                    <h2>$ 43.00</h2>
+                    <h2 id="checkout-order-total-price">$ 43.00</h2>
                 </div>
                 <h1>Payments methods</h1>
                 <form action="" id="form-with-personal-data-nd">
@@ -400,10 +371,10 @@
                 <h1>Sign up for the newsletter and coupons!</h1>
             </div>
             <div class="newsletter--text__send-box">
-                    <form action="">
-                            <input type="email" class="send-box--input" placeholder="Enter your email address" required>
-                            <input type="submit" class="send-box--button" value="subscribe">
-                        </form>
+                <form action="">
+                    <input type="email" class="send-box--input" placeholder="Enter your email address" required>
+                    <input type="submit" class="send-box--button" value="subscribe">
+                </form>
             </div>
         </div>
     </section>
@@ -432,6 +403,7 @@
 </body>
 <script type="module">
     import { NavbarChanging } from './js/navbarChanging.js';
+    import { GenerateCheckout } from './js/generateCheckout.js';
 </script>
 
 </html>

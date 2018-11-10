@@ -510,6 +510,11 @@ body {
     margin-bottom: 70px; }
     .build-pizza button a {
       text-decoration: none; }
+  .build-pizza #build-pizza-btn {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    text-decoration: none; }
 
 .pizza-builder__checkout {
   align-self: flex-start;
@@ -664,6 +669,11 @@ body {
   @media screen and (max-width: 770px) {
     .ingridients--list__down {
       flex-direction: column; } }
+
+.collapse-on {
+  margin-bottom: 30px !important;
+  opacity: 1 !important;
+  height: auto !important; }
 
 .ingridients--list__down-hide {
   transition: opacity 1.5s ease-out;
@@ -1198,10 +1208,6 @@ body {
   margin: 0px;
   color: #d45c15; }
 
-.item--size-to-order__hide {
-  width: 175px;
-  height: 35px; }
-
 .item--size-to-order {
   display: flex;
   flex-direction: row;
@@ -1209,6 +1215,11 @@ body {
   align-items: center;
   margin-top: 10px;
   display: none; }
+  .item--size-to-order form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
   .item--size-to-order select {
     background-color: transparent;
     color: white;
@@ -1219,6 +1230,37 @@ body {
     cursor: pointer; }
     .item--size-to-order select option {
       background-color: #2c2c2c;
+      cursor: pointer; }
+  .item--size-to-order div {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: white;
+    line-height: 25px;
+    display: flex;
+    flex-direction: row; }
+    .item--size-to-order div a {
+      text-decoration: none;
+      color: white;
+      padding: 0 10px;
+      font-size: 1.3rem;
+      display: block; }
+    .item--size-to-order div input {
+      width: 40px;
+      background-color: transparent;
+      color: white;
+      border: 1px solid white;
+      height: 25px;
+      text-align: center;
+      cursor: no-drop; }
+    .item--size-to-order div input[type="button"] {
+      text-transform: uppercase;
+      width: 60px;
+      height: 25px;
+      margin-left: 5px;
+      background-color: #e9b300;
+      border: none;
+      font-weight: bold;
+      font-size: 13px;
       cursor: pointer; }
 
 .pizza-menu__checkout {
@@ -1460,7 +1502,7 @@ body {
   display: flex; }
   .item--item-with-amount p {
     text-transform: capitalize; }
-  .item--item-with-amount p:last-child {
+  .item--item-with-amount p:nth-last-child(2) {
     color: #d45c15;
     text-transform: none; }
 

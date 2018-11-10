@@ -1,5 +1,7 @@
-import { checkout } from "./checkout.js";
-const SizeOfCrust = (function() {
+import {
+  checkout
+} from "./checkout.js";
+const SizeOfCrust = (function () {
   let allSizesElement = document.querySelectorAll(".down--sizes__element");
   let sizeCrust = document.querySelector("#size-crust-pizza");
   let priceCrust = document.querySelector("#price-crust-pizza");
@@ -24,4 +26,6 @@ const SizeOfCrust = (function() {
     });
   });
 })();
-export { SizeOfCrust };
+export {
+  SizeOfCrust
+};

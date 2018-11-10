@@ -53,7 +53,7 @@
         <h1>Pizza menu</h1>
         <div class="banner-pizza-builder--breadcrumb">
             <ul>
-                <li><a href="index.html">home</a></li>
+                <li><a href="index.php">home</a></li>
                 <li>></li>
                 <li><a href="#">pizza menu</a></li>
             </ul>
@@ -74,7 +74,7 @@
                     $_SESSION{'description' . $i} = $row['Description'];
                     $_SESSION{'price' . $i} = $row['Price'];
                     // $connection->close();
-                        echo '<div class="pizza-menu--list__item" data-name='.$_SESSION["name$i"].' data-price='.$_SESSION["price$i"].' data-fixedprice='.$_SESSION["price$i"].'>
+                        echo '<div class="pizza-menu--list__item pizza-menu--list__item-checked" >
                             <img src="pic/pizza-1.png" alt='.$_SESSION["name$i"].'>
                             <h2 class="name-of-pizza" >
                                 '.$_SESSION["name$i"].'
@@ -87,22 +87,28 @@
                                     $'.$_SESSION["price$i"].'
                                 </h2>
                             </div>
-                            <div class="item--size-to-order__hide"></div>
                             <div class="item--size-to-order">
-                                <form action="">
-                                    <select name="size" class='.$_SESSION["name$i"].' data-price='.$_SESSION["price$i"].'>
-                                        <option value="0" selected>small</option>
-                                        <option value="3">medium</option>
-                                        <option value="5">large</option>
-                                        <option value="7">jumbo</option>
-                                        <option value="9">party size</option>
+                                <form action="" class="form-pizza" data-name='.$_SESSION["name$i"].'>
+                                    <select name="size" id='.$_SESSION["name$i"].' data-price='.$_SESSION["price$i"].'>
+                                        <option value="0" selected data-sizename="small">small</option>
+                                        <option value="3" data-sizename="medium">medium</option>
+                                        <option value="5" data-sizename="large">large</option>
+                                        <option value="7" data-sizename="jumbo">jumbo</option>
+                                        <option value="9" data-sizename="party size">party size</option>
                                     </select>
+                                    <div>
+                                        <a href="javascript:void(0)" id="minus">-</a>
+                                        <input type="text" value="1" readonly="readonly" id="amount-pizza-input">
+                                        <a href="javascript:void(0)" id="plus">+</a>
+                                        <input class="submit-to-add" type="button" value="ADD">
+                                   </div>
                                 </form>
                             </div>
                         </div>';
                 }
               }
             ?>
+         
             <div class="pizza-menu--list__line"></div>
         </div>
         <div class="pizza-menu__checkout">
@@ -114,8 +120,9 @@
             <div class="order--products-list" id="list-of-pizzas">
                 <div class="order--products-list__item">
                     <div class="item--item-with-amount">
-                        <p><p>
-                        <p></p>
+                        <p>
+                            <p>
+                                <p></p>
                     </div>
                     <p></p>
                 </div>
@@ -124,7 +131,9 @@
                 <h2>order total</h2>
                 <h2 id="total-price">$ 0.00</h2>
             </div>
-            <input type="submit" value="ADD TO CARD">
+            <a href="#">
+                <input type="submit" value="ADD TO CARD" id="add-to-card">
+            </a>
             <input type="submit" value="BUY" id="buy-btn">
         </div>
     </section>

@@ -1,7 +1,7 @@
-let CountUpIngridients = ( function() {
+let CountUpIngridients = (function () {
     let paused = false;
     let heightX = 0;
-    window.addEventListener("scroll",  ()=> {
+    window.addEventListener("scroll", () => {
         let el = document.querySelector(".ingridients").getBoundingClientRect();
         heightX = el.top - 500;
         if (heightX < 0) {

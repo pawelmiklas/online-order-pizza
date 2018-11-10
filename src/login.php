@@ -18,17 +18,17 @@
 <body>
     <nav class="navbar">
         <div class="navbar--row">
-            <a href="index.html" class="navbar--logo">diavola</a>
+            <a href="index.php" class="navbar--logo">diavola</a>
             <span id="navbar--toggle">
                 <i class="fas fa-bars"></i>
             </span>
         </div>
         <ul id="navbar--list">
-            <li><a href="index.html" class="navbar--list__link">home</a></li>
-            <li><a href="pizza-menu.html" class="navbar--list__link">pizza menu</a></li>
-            <li><a href="pizza-builder.html" class="navbar--list__link">pizza builder</a></li>
-            <li><a href="index.html#about-us" class="navbar--list__link">about us</a></li>
-            <li><a href="index.html#contact" class="navbar--list__link">contact</a></li>
+            <li><a href="index.php" class="navbar--list__link">home</a></li>
+            <li><a href="pizza-menu.php" class="navbar--list__link">pizza menu</a></li>
+            <li><a href="pizza-builder.php" class="navbar--list__link">pizza builder</a></li>
+            <li><a href="index.php#about-us" class="navbar--list__link">about us</a></li>
+            <li><a href="index.php#contact" class="navbar--list__link">contact</a></li>
             <li><a href="#" class="navbar--list__link special">login</a></li>
         </ul>
     </nav>
