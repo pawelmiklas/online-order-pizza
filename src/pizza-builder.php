@@ -241,7 +241,7 @@
                 <h2>order total</h2>
                 <h2 id="order-total-price">$ 0.00</h2>
             </div>
-            <a href="checkout.php"><input type="submit" value="ADD TO CARD"></a>
+            <input type="submit" value="ADD TO CARD" id="add-to-card">
             <input type="submit" value="ADD AND CREATE ANOTHER PIZZA" id="buy-btn2">
         </div>
     </section>
@@ -283,7 +283,7 @@
 </body>
 <script type="module">
     import { NavbarChanging } from './js/navbarChanging.js';
-    import { SizeOfCrust } from './js/sizeOfCrust.js';
+    // import { SizeOfCrust } from './js/sizeOfCrust.js';
     import { CheckCircle } from './js/checkCircle.js';
     import { DropdownList } from './js/dropdownList.js';
 </script>

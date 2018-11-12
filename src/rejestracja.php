@@ -29,31 +29,20 @@
             $_SESSION['blad_login'] = "Login nie może zawierać znaków specjalynch (tylko litery i cyfry)";
         }
 
-
-
         //czy login istnieje?
         require_once "polaczenie.php";
-
         $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
-
-        if($polaczenie->connect_errno!=0)
-        {
+        if($polaczenie->connect_errno!=0){
           echo '<p>jakis problem jest </p>';
-        }
-        else
-        {
+        }else{
             $rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE login='$login'");
-
-
             $ile_loginow = $rezultat->num_rows;
-            if($ile_loginow>0)
-            {
+            if($ile_loginow>0){
                 $ok = False;
                 $_SESSION['blad_login'] = "Taki login już istnieje";
-            }
-            else
+            } else {
                 $ok = True;
-
+            }
           $polaczenie->close();
         }
 
@@ -68,23 +57,16 @@
 //        }
 //
         //sprawdzanie haseł
-        if((strlen($haslo)<5))
-        {
+        if((strlen($haslo)<5)){
             $ok = False;
             $_SESSION['blad_haslo'] = "Hasło musi składać się minimum z 5 znaków";
         }
-        if($haslo!=$haslo2)
-        {
+        if($haslo!=$haslo2){
             $ok=False;
             $_SESSION['blad_haslo2'] = "Hasła nie są takie same!";
         }
 
-
-
-
-
-        if(!isset($_POST['check']))
-        {
+        if(!isset($_POST['check'])){
             $ok=False;
             $_SESSION['blad_regulamin'] = "Nie zaakceptowałeś regulaminu";
         }
@@ -107,41 +89,27 @@
         $_SESSION['zap_kod_pocztowy'] = $kod_pocztowy;
 
 
-        if($ok==True)
-        {
-
-
+        if($ok==True){
             $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
             if (mysqli_connect_errno() != 0){
                 echo '<p>Wystąpił błąd połączenia: ' . mysqli_connect_error() . '</p>';
-            }
-            else
-            {
+            } else {
                $wynik = @$polaczenie -> query("INSERT INTO uzytkownicy (id_uzytkownika, login, haslo, email, nr_telefonu, data_rejestracji, imie, nazwisko, adres, miasto, kod_pocztowy) VALUES ('', '$login','$haslo','$email','$nr_telefonu', '$today', '$imie','$nazwisko','$adres','$miasto','$kod_pocztowy')");
-
 //                $wynik2 = @$polaczenie -> query("INSERT INTO dateczka (id_data, data) VALUES ('','NOW()')");
             }
 
-
-
-            if ($wynik == false)
-            {
+            if ($wynik == false)            {
                 echo '<p>Zapytanie nie zostało wykonane poprawnie!</p>';
                 $polaczenie -> close();
-            }
-                else {
+            } else {
                     $_SESSION['okrejestracja'] = True;
-
                     echo "<div style='color: white; margin-top: 25%; margin-left: auto; margin-right: auto; font-size: 20px;
-          width: 600px; height: 70px; background-color: rgb(38, 126, 226);text-align: center; line-height: 70px; border-radius: 10px;'>"."<p>Dziękujemy za rejestrację!</p>"."</div>";
+                    width: 600px; height: 70px; background-color: rgb(38, 126, 226);text-align: center; line-height: 70px; border-radius: 10px;'>"."<p>Dziękujemy za rejestrację!</p>"."</div>";
                     sleep(2);
                     header('Refresh: 2; url=index.php');
-
-
-
                     $polaczenie -> close();
-                }
-                exit();
+            }
+            exit();
         }
     }
 

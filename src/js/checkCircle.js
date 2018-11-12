@@ -1,15 +1,48 @@
-import {
-  checkout
-} from "./checkout.js";
+let checkout = [];
+let j = 1;
 const CheckCircle = (() => {
   let blockToChecked = document.querySelectorAll(".down--ingridients__sauce");
   let productListOrder = document.querySelector("#product-list-order");
   let orderTotalPrice = document.querySelector("#order-total-price");
+  let addToCard = document.querySelector("#add-to-card");
+  let createAnother = document.querySelector("#buy-btn2");
+  let finalPrice = 0;
+  let ingridientsArray = [];
+  let sizeName = '';
+
+  let sizeOFCrust = function () {
+    let allSizesElement = document.querySelectorAll(".down--sizes__element");
+    let sizeCrust = document.querySelector("#size-crust-pizza");
+    let priceCrust = document.querySelector("#price-crust-pizza");
+    let orderTotalPrice = document.querySelector("#order-total-price");
+    let i = 0;
+    allSizesElement.forEach(item => {
+      item.addEventListener("click", () => {
+        if (item.classList.contains("checked-size")) {
+          return;
+        }
+        allSizesElement.forEach(item => {
+          item.classList.remove("checked-size");
+        });
+        finalPrice -= i;
+        item.classList.add("checked-size");
+        i = parseFloat(item.getAttribute("data-price"));
+        finalPrice += parseFloat(item.getAttribute("data-price"));
+        sizeName = item.getAttribute("data-value");
+        sizeCrust.innerHTML = item.getAttribute("data-value");
+        priceCrust.innerHTML = item.getAttribute("data-price");
+        orderTotalPrice.innerHTML = `$${finalPrice.toFixed(2)}`;
+      });
+    });
+  }
+  sizeOFCrust();
+
   blockToChecked.forEach(block => {
     block.addEventListener("click", () => {
       let AllCheckCircle = block.querySelector(".fa-check-circle");
       let name = block.getAttribute("value");
       let price = block.getAttribute("data-price");
+
       if (block.classList.contains("without")) {
         block.classList.remove("without");
         AllCheckCircle.style.display = "flex";
@@ -23,24 +56,48 @@ const CheckCircle = (() => {
           </div>
           `;
         price = +price;
-        checkout.totalPrice += price;
-        checkout.ingridients.push(name);
+        finalPrice += price;
+        ingridientsArray.push(name);
         productListOrder.innerHTML += schema;
       } else {
-        checkout.ingridients.forEach(() => {
-          let index = checkout.ingridients.indexOf(name);
-          if (index > -1) {
-            checkout.ingridients.splice(index, 1);
-          }
-        });
         document.getElementById(`${name}1`).remove();
         price = +price;
-        checkout.totalPrice -= price;
+        finalPrice -= price;
         block.classList.add("without");
         AllCheckCircle.style.display = "none";
       }
-      orderTotalPrice.innerHTML = `$${checkout.totalPrice.toFixed(2)}`;
+
+      orderTotalPrice.innerHTML = `$${finalPrice.toFixed(2)}`;
     });
+  });
+
+  let checkoutIngridients = (link) => {
+    if (finalPrice === 0 || sizeName === '') {
+      alert(`Choose some ingridients to your pizza bro!`);
+    } else {
+      const customPizza = `custom pizza ${j}`;
+      checkout.push({
+        name: customPizza,
+        price: parseFloat(finalPrice),
+        size: sizeName,
+        ingridients: ingridientsArray
+      });
+      j++;
+      if (localStorage.getItem('pizzaMenuBuilder')) {
+        let clientsArr = JSON.parse(localStorage.getItem('pizzaMenuBuilder'));
+        localStorage.setItem('pizzaMenuBuilder', JSON.stringify([...checkout, ...clientsArr]));
+      } else {
+        localStorage.setItem('pizzaMenuBuilder', JSON.stringify(checkout));
+      }
+      window.location.href = `${link}`;
+    }
+  }
+
+  createAnother.addEventListener('click', () => {
+    checkoutIngridients('pizza-builder.php');
+  })
+  addToCard.addEventListener('click', () => {
+    checkoutIngridients('checkout.php');
   });
 })();
 export {

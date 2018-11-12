@@ -134,7 +134,9 @@
             <a href="#">
                 <input type="submit" value="ADD TO CARD" id="add-to-card">
             </a>
-            <input type="submit" value="BUY" id="buy-btn">
+            <a href="checkout.php">
+                <input type="submit" value="BUY" id="buy-btn">
+            </a>
         </div>
     </section>
     <section class="newsletter">

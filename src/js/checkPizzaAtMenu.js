@@ -43,39 +43,46 @@ const CheckPizzaAtMenu = (() => {
 			selectValuePrice = +selectValuePrice;
 			let thisValue = parseFloat(selectValue.value);
 			let amountPizzas = amountPizzaInput.value;
-			let finalPriceForPizza = ((selectValuePrice + thisValue) * amountPizzas).toFixed(2);
-			if (checkoutPizza.length > 0) {
-				console.log("wieksza od zera");
-				checkoutPizza.forEach((e) => {
-					if (e.name == name && e.size == selectValueSizeName) {
-						e.price += finalPriceForPizza;
-						e.amount += 1;
-					} else {
-
-					}
-				})
-			}
-			let schema = `
-			<div class="order--products-list__item">
-				<div class="item--item-with-amount">
-				<p>${name} &nbsp;</p>
-				<p>x${amountPizzas}</p>
-				<p>&nbsp; ${selectValueSizeName}</p>
+			let finalPriceForPizza = (selectValuePrice + thisValue).toFixed(2);
+			// let flag = true;
+			// if (checkoutPizza.length > 0) {
+			// 	console.log("wieksza od zera");
+			// 	checkoutPizza.forEach((e) => {
+			// 		if (e.name == name && e.size == selectValueSizeName) {
+			// 			e.price += parseFloat(finalPriceForPizza);
+			// 			e.amount += 1;
+			// 			flag = !flag;
+			// 			countMoney();
+			// 		}
+			// 	})
+			// }
+			// if (flag) {
+			// dodać id do schema żeby po if u góry można było zmieniać wartości
+			// amount i price. Ewentualnie wartosci w schema dodawać z tablicy
+			for (let i = 1; i <= Number(amountPizzas); i++) {
+				let schema = `
+				<div class="order--products-list__item">
+					<div class="item--item-with-amount">
+						<p>${name} &nbsp;</p>
+						<p>x1</p>
+						<p>&nbsp; ${selectValueSizeName}</p>
+					</div>
+					<p>${finalPriceForPizza}</p>
 				</div>
-				<p>${finalPriceForPizza}</p>
-			</div>
-			`;
-			listOfPizzas.innerHTML += schema;
-			checkoutPizza.push({
-				name: name,
-				price: parseFloat(finalPriceForPizza),
-				size: selectValueSizeName,
-				amount: parseFloat(amountPizzas)
-			});
-			countMoney();
-			selectValue.selectedIndex = 0;
-			amountPizzaInput.value = 1;
-			console.log(checkoutPizza);
+				`;
+				listOfPizzas.innerHTML += schema;
+				checkoutPizza.push({
+					name: name,
+					price: parseFloat(finalPriceForPizza),
+					size: selectValueSizeName,
+					amount: 1
+				});
+				countMoney();
+				selectValue.selectedIndex = 0;
+				amountPizzaInput.value = 1;
+				console.log(checkoutPizza);
+			}
+
 		})
 	})
 
@@ -84,16 +91,16 @@ const CheckPizzaAtMenu = (() => {
 			let clientsArr = JSON.parse(localStorage.getItem('pizzaMenu'));
 			// console.log(`a: ${clientsArr}`);
 			// console.log(clientsArr);
-			console.log(checkoutPizza);
-			let found = clientsArr.forEach(({
-				name
-			}) => {
-				checkoutPizza.forEach((element) => {
-					if (element.name === name) {
-						console.log(`Pokrywa się: ${name}`);
-					}
-				});
-			});
+			// console.log(checkoutPizza);
+			// let found = clientsArr.forEach(({
+			// 	name
+			// }) => {
+			// 	checkoutPizza.forEach((element) => {
+			// 		if (element.name === name) {
+			// 			console.log(`Pokrywa się: ${name}`);
+			// 		}
+			// 	});
+			// });
 			// const xdddd = clientsArr.find((item) => item.name == checkoutPizza.name);
 			// console.log(found);
 			// console.log(name);

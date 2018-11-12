@@ -1,5 +1,6 @@
-export let checkout = {
-  totalPrice: 0,
-  pizzaSize: null,
+export let checkout = [{
+  name: 'custom pizza',
+  price: 0,
+  size: null,
   ingridients: []
-};
+}];

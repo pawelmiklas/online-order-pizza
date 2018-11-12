@@ -191,15 +191,13 @@
     <section class="checkout">
         <div class="checkout--side">
             <div class="checkout--side__billing-details">
+                <h1>Do you have an account?</h1>
+                <input type="radio" name="account"checked class="input-radio" data-value="no"><label class="radio-label">no</label>
+                <input type="radio" name="account" class="input-radio" data-value="yes"><label class="radio-label">yes</label>
+                    <br>
+                    <br>
                 <form action="" id="form-with-personal-data" method="post">
                     <h1>billing Details</h1>
-                    <label for="country">country</label>
-                    <select name="country" class="full-inputs" id="country" required>
-                        <option value="" selected="true" disabled="disabled">Country...</option>
-                        <option value="AF">Afghanistan</option>
-                        <option value="AL">Albania</option>
-                        <option value="DZ">Algeria</option>
-                    </select>
                     <div class="half-inputs">
                         <div class="half-inputs--element">
                             <label for="last-name">first name*</label>
@@ -224,46 +222,7 @@
                             ?>">
                         </div>
                     </div>
-                    <div class="half-inputs">
-                        <div class="half-inputs--element">
-
-                            <!-- <label for="company-name">company name</label>
-                            <input type="text" class="full-inputs" id="company-name"> -->
-                            <label for="login_rej">Login</label>
-                            <input required type="text" name="login_rej" value="<?php
-                         if(isset($_SESSION['zap_login']))
-                         {
-                             echo $_SESSION['zap_login'];
-                             unset ($_SESSION['zap_login']);
-                            }
-                            
-                            ?>">
-                        </div>
-                        <div class="half-inputs--element">
-
-                            <label for="haslo_rej">Hasło</label>
-                            <input class="full-inputs" required type="password" name="haslo_rej" value="<?php
-                         if(isset($_SESSION['zap_haslo1']))
-                         {
-                             echo $_SESSION['zap_haslo1'];
-                             unset ($_SESSION['zap_haslo1']);
-                            }
-                            
-                            ?>">
-                        </div>
-
-
-                    </div>
-                    <label for="miasto_rej2">Hasło</label>
-                    <input required class="full-inputs" type="password" name="haslo_rej2" value="<?php
-                         if(isset($_SESSION['zap_haslo2']))
-                         {
-                             echo $_SESSION['zap_haslo2'];
-                             unset ($_SESSION['zap_haslo2']);
-                            }
-
-                            ?>">
-                    <br>
+  
                     <label for="address">address*</label>
                     <input type="text" class="full-inputs" placeholder="Street address" id="address" required>
 
@@ -316,26 +275,23 @@
                             ?>">
                         </div>
                     </div>
-                    <span class="checkbox-row">
+                    <div class="checkbox-row">
                         <input required type="checkbox" name="check">
-                        <label for="">Akceptuję regulamin</label>
-                        &nbsp;
+                        <label for="">I have read and accept the <a href="#">Terms &
+                            conditions</a></label>
                         <?php
-                                if(isset($_SESSION['blad_regulamin']))
-                                {
+                                if(isset($_SESSION['blad_regulamin'])){
                                     echo "<div class='blad form__error'>".$_SESSION['blad_regulamin']."</div>";
-                unset($_SESSION['blad_regulamin']);
+                                    unset($_SESSION['blad_regulamin']);
                                 }
                             ?>
-                        </span>
-                    <!-- <div class="checkbox-element">
-                        <input type="checkbox" id="create-account" placeholder="create-account">
-                        <label for="create-account">Create an account?</label>
-                    </div> -->
-                    <h1 class="shipping-address-h1">shipping address</h1>
-                    <label for="create-account2">order notes</label>
-                    <textarea name="" id="create-account2" maxlength="255" placeholder="Notes about your order"></textarea>
-                    <input type="submit" name="submit" value="Zarejestruj!">
+                    </div>
+                </form>
+                <form action="logowanie.php" id="login-form-checkout" method="post">
+                    <label for="login">login</label>
+                    <input type="text" id="login" required name="login">
+                    <label for="password">password</label>
+                    <input type="password" id="password" required name="haslo">
                 </form>
             </div>
 
@@ -355,11 +311,9 @@
                 <form action="" id="form-with-personal-data-nd">
                     <input type="radio" name="payment" checked><label for="">direct bank transfer</label><br>
                     <input type="radio" name="payment"><label for="">cheque payment</label> <br>
-                    <input type="radio" name="payment"><label for="">paypal</label> <br> <br> <br>
-                    <input type="radio" required> <label for="">I have read and accept the <a href="#">Terms &
-                            conditions</a></label>
+                    <input type="radio" name="payment"><label for="">paypal</label>
                 </form>
-                <input type="submit" value="place order">
+                <input type="submit" value="place order" name="submit" form="login-form-checkout">
             </div>
 
         </div>

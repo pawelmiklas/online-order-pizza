@@ -38,10 +38,17 @@
                 <label for="login">login</label>
                 <input type="text" id="login" required name="login">
                 <label for="password">password</label>
-                <input type="password" id="password" required name="haslo">
+                <input type="password" id="password" required name="password">
+                <?php
+                    if(isset($_SESSION['error'])){
+                        echo $_SESSION['error'];
+                        unset($_SESSION['error']);
+                    }
+                    ?> 
                 <input type="submit" value="Sign in" name="submit">
             </form>
-        </div>
+            <a href="create-account.php">I don't have an account!</a>
+        </div> 
     </section>
 </body>
 <script type="module">
