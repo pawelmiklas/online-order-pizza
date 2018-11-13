@@ -29,14 +29,29 @@
             <li><a href="pizza-builder.php" class="navbar--list__link">pizza builder</a></li>
             <li><a href="index.php#about-us" class="navbar--list__link">about us</a></li>
             <li><a href="index.php#contact" class="navbar--list__link">contact</a></li>
-            <li><a href="#" class="navbar--list__link special">login</a></li>
+            <li>
+                <?php
+                    if((isset($_SESSION["zalogowany"]))&&($_SESSION["zalogowany"]==True)){
+                        echo '<a class="navbar--list__link navbar--list__link-fixed">'.$_SESSION['user'].'</a>';
+                        echo '<a href="logout.php" class="navbar--list__link navbar--list__link-fixed"><input type="button" value="Logout" class="subpage-input"></a>';
+                    } else {
+                        echo '<a href="login.php" class="navbar--list__link special" value="Log In">login</a>';
+                    }
+                ?>
+            </li>
         </ul>
     </nav>
     <section class="login">
         <div class="login--form">
-            <form action="logowanie.php" id="login__form" method="post">
+            <form action="login-action.php" id="login__form" method="post">
                 <label for="login">login</label>
                 <input type="text" id="login" required name="login">
+                <?php
+                    if(isset($_SESSION['loginDigits'])){
+                        echo $_SESSION['loginDigits'];
+                        unset($_SESSION['loginDigits']);
+                    }
+                    ?> 
                 <label for="password">password</label>
                 <input type="password" id="password" required name="password">
                 <?php

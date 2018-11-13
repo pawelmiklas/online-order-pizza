@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "polaczenie.php";
+    require_once "connection.php";
     $connection = @new mysqli($host,$db_user,$db_password,$db_name);
 ?>
 <!DOCTYPE html>
@@ -31,7 +31,17 @@
             <li><a href="#" class="navbar--list__link">pizza builder</a></li>
             <li><a href="index.php#about-us" class="navbar--list__link">about us</a></li>
             <li><a href="#contact" class="navbar--list__link">contact</a></li>
-            <li><a href="login.php" class="navbar--list__link special">login</a></li>
+            <li>
+                <?php
+                    if((isset($_SESSION["zalogowany"]))&&($_SESSION["zalogowany"]==True)){
+                        echo '<a class="navbar--list__link navbar--list__link-fixed">'.$_SESSION['user'].'</a>';
+                        echo '<a href="logout.php" class="navbar--list__link navbar--list__link-fixed"><input type="button" value="Logout" class="subpage-input"></a>';
+                    }
+                    else{
+                        echo '<a href="login.php" class="navbar--list__link special" value="Log In">login</a>';
+                    }
+                ?>
+            </li>
         </ul>
     </nav>
     <section class="banner-pizza-builder">

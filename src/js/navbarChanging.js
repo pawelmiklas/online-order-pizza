@@ -1,14 +1,16 @@
-let NavbarChanging = (function() {
-  let navbar_list = document.getElementById("navbar--list");
-  let navbar_toggle = document.getElementById("navbar--toggle");
-  navbar_toggle.addEventListener("click", function() {
+let NavbarChanging = (function () {
+  let navbarList = document.getElementById("navbar--list");
+  let navbarToggle = document.getElementById("navbar--toggle");
+  navbarToggle.addEventListener("click", function () {
     if (this.classList.contains("active")) {
-      navbar_list.style.display = "none";
+      navbarList.style.display = "none";
       this.classList.remove("active");
     } else {
-      navbar_list.style.display = "flex";
+      navbarList.style.display = "flex";
       this.classList.add("active");
     }
   });
 })();
-export { NavbarChanging };
+export {
+  NavbarChanging
+};

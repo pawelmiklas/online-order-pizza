@@ -44,16 +44,16 @@
             <li><a href="#pizza-builder" class="navbar--list__link">pizza builder</a></li>
             <li><a href="#about-us" class="navbar--list__link">about us</a></li>
             <li><a href="#contact" class="navbar--list__link">contact</a></li>
-            <li class="list-special">
+            <li>
                 <?php
                     if((isset($_SESSION["zalogowany"]))&&($_SESSION["zalogowany"]==True)){
-                        echo '<a href="" class="navbar--list__link">'.$_SESSION['user'].'</a>';
-                        echo '<a href="wyloguj.php" class="navbar--list__link link-special"><input type="button" value="Logout" class="subpage-input"></a>';
+                        echo '<a class="navbar--list__link navbar--list__link-fixed">'.$_SESSION['user'].'</a>';
+                        echo '<a href="logout.php" class="navbar--list__link navbar--list__link-fixed"><input type="button" value="Logout" class="subpage-input"></a>';
                     }
                     else{
                         echo '<a href="login.php" class="navbar--list__link special" value="Log In">login</a>';
                     }
-                    ?>
+                ?>
             </li>
         </ul>
     </nav>

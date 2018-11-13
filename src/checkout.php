@@ -1,150 +1,25 @@
 <?php
     session_start();
     error_reporting(1);
-    if(isset($_POST['login_rej']))
-    {
-        $ok = True;
-        $imie = $_POST['imie_rej'];
-        $nazwisko = $_POST['nazwisko_rej'];
-        $adres = $_POST['adres_rej'];
-        $miasto = $_POST['miasto_rej'];
-        $kod_pocztowy = $_POST['kod_pocztowy_rej'];
-
-        $login = $_POST['login_rej'];
-        $haslo = $_POST['haslo_rej'];
-        $haslo2 = $_POST['haslo_rej2'];
-        $email = $_POST['email_rej'];
-        $nr_telefonu = $_POST['tel_rej'];
-//        $data_rejestracji NOW();
-         $today = date("Y-m-d H:i:s");
-        //sprawdzanie loginu
-        if((strlen($login)<3) || (strlen($login)>20))
-        {
-            $ok = False;
-            $_SESSION['blad_login'] = "Login musi mieć od 3 do 20 znaków";
-        }
-        if(ctype_alnum($login)==False)
-        {
-            $ok=False;
-            $_SESSION['blad_login'] = "Login nie może zawierać znaków specjalynch (tylko litery i cyfry)";
-        }
-
-
-
-        //czy login istnieje?
-        require_once "polaczenie.php";
-
-        $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
-
-        if($polaczenie->connect_errno!=0)
-        {
-          echo '<p>jakis problem jest </p>';
-        }
-        else
-        {
-            $rezultat = $polaczenie->query("SELECT id FROM uzytkownicy WHERE login='$login'");
-
-
-            $ile_loginow = $rezultat->num_rows;
-            if($ile_loginow>0)
-            {
-                $ok = False;
-                $_SESSION['blad_login'] = "Taki login już istnieje";
+    require_once "connection.php";
+    $conn = @new mysqli($host, $db_user, $db_password, $db_name);
+    if($conn->connect_errno!=0){
+        echo "No connection to the database: ".$conn->connect_errno;
+    } else {
+        $login = $_SESSION['user'];
+        if($result = @$conn->query(
+        sprintf("SELECT Address1, City, ZipCode FROM customer WHERE login='%s'",
+        mysqli_real_escape_string($conn,$login)))){
+            $users = $result->num_rows;
+            if($users > 0){
+                $row = $result->fetch_assoc();
+                $_SESSION['addressSession']=$row['Address1'];
+                $_SESSION['zipCodeSession']=$row['ZipCode'];
+                $_SESSION['citySession']=$row['City'];
             }
-            else
-                $ok = True;
-
-          $polaczenie->close();
         }
-
-
-        //sprawdzanie maila
-
-//
-//        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-//        {
-//            $ok=False;
-//            $_SESSION['blad_email'] = "Podaj poprawny adres email";
-//        }
-//
-        //sprawdzanie haseł
-        if((strlen($haslo)<5))
-        {
-            $ok = False;
-            $_SESSION['blad_haslo'] = "Hasło musi składać się minimum z 5 znaków";
-        }
-        if($haslo!=$haslo2)
-        {
-            $ok=False;
-            $_SESSION['blad_haslo2'] = "Hasła nie są takie same!";
-        }
-
-
-
-
-
-        if(!isset($_POST['check']))
-        {
-            $ok=False;
-            $_SESSION['blad_regulamin'] = "Nie zaakceptowałeś regulaminu";
-        }
-
-        require_once "polaczenie.php";
-
-
-        //zapamietywanie danych
-
-        $_SESSION['zap_login'] = $login;
-        $_SESSION['zap_haslo1'] = $haslo;
-        $_SESSION['zap_haslo2'] = $haslo2;
-        $_SESSION['zap_email'] = $email;
-        $_SESSION['zap_tel'] = $nr_telefonu;
-//        $_SESSION['zap_rej'] = $data_rejestracji;
-         $_SESSION['zap_imie'] = $imie;
-        $_SESSION['zap_nazwisko'] = $nazwisko;
-        $_SESSION['zap_adres'] = $adres;
-        $_SESSION['zap_miasto'] = $miasto;
-        $_SESSION['zap_kod_pocztowy'] = $kod_pocztowy;
-
-
-        if($ok==True)
-        {
-
-
-            $polaczenie = @new mysqli($host, $db_user, $db_password, $db_name);
-            if (mysqli_connect_errno() != 0){
-                echo '<p>Wystąpił błąd połączenia: ' . mysqli_connect_error() . '</p>';
-            }
-            else
-            {
-               $wynik = @$polaczenie -> query("INSERT INTO uzytkownicy (id_uzytkownika, login, haslo, email, nr_telefonu, data_rejestracji, imie, nazwisko, adres, miasto, kod_pocztowy) VALUES ('', '$login','$haslo','$email','$nr_telefonu', '$today', '$imie','$nazwisko','$adres','$miasto','$kod_pocztowy')");
-
-//                $wynik2 = @$polaczenie -> query("INSERT INTO dateczka (id_data, data) VALUES ('','NOW()')");
-            }
-
-
-
-            if ($wynik == false)
-            {
-                echo '<p>Zapytanie nie zostało wykonane poprawnie!</p>';
-                $polaczenie -> close();
-            }
-                else {
-                    $_SESSION['okrejestracja'] = True;
-
-                    echo "<div style='color: white; margin-top: 25%; margin-left: auto; margin-right: auto; font-size: 20px;
-          width: 600px; height: 70px; background-color: rgb(38, 126, 226);text-align: center; line-height: 70px; border-radius: 10px;'>"."<p>Dziękujemy za rejestrację!</p>"."</div>";
-                    sleep(2);
-                    header('Refresh: 2; url=index.php');
-
-
-
-                    $polaczenie -> close();
-                }
-                exit();
-        }
+      $conn->close();
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -175,7 +50,17 @@
             <li><a href="pizza-builder.php" class="navbar--list__link">pizza builder</a></li>
             <li><a href="index.php#about-us" class="navbar--list__link">about us</a></li>
             <li><a href="#contact" class="navbar--list__link">contact</a></li>
-            <li><a href="login.php" class="navbar--list__link special">login</a></li>
+            <li>
+                <?php
+                    if((isset($_SESSION["zalogowany"]))&&($_SESSION["zalogowany"]==True)){
+                        echo '<a class="navbar--list__link navbar--list__link-fixed">'.$_SESSION['user'].'</a>';
+                        echo '<a href="logout.php" class="navbar--list__link navbar--list__link-fixed"><input type="button" value="Logout" class="subpage-input"></a>';
+                    }
+                    else{
+                        echo '<a href="login.php" class="navbar--list__link special" value="Log In">login</a>';
+                    }
+                ?>
+            </li>
         </ul>
     </nav>
     <section class="banner-pizza-builder">
@@ -191,107 +76,91 @@
     <section class="checkout">
         <div class="checkout--side">
             <div class="checkout--side__billing-details">
-                <h1>Do you have an account?</h1>
-                <input type="radio" name="account"checked class="input-radio" data-value="no"><label class="radio-label">no</label>
-                <input type="radio" name="account" class="input-radio" data-value="yes"><label class="radio-label">yes</label>
-                    <br>
-                    <br>
+                <?php
+                if(!(isset($_SESSION["zalogowany"]))&&($_SESSION["zalogowany"]==False)){
+                    echo '<h1>Do you have an account?</h1>
+                    <input type="radio" name="account"checked class="input-radio" data-value="no"><label class="radio-label">no</label>
+                    <input type="radio" name="account" class="input-radio" data-value="yes"><label class="radio-label">yes</label>
+                        <br>
+                        <br>';
+                }
+                ?>
+                
                 <form action="" id="form-with-personal-data" method="post">
-                    <h1>billing Details</h1>
+                <?php
+                if((isset($_SESSION["zalogowany"]))&&($_SESSION["zalogowany"]==True)){
+                    echo '<div>
+                    <h1>Another address to ship?</h1>
+                    <label for="address">address*</label>
+                    <input type="text" class="full-inputs" id="address" required value='.$_SESSION['addressSession'].'>
+                    <div class="half-inputs">
+                        <div class="half-inputs--element">
+                            <label for="town-city">town/city*</label>
+                            <input required type="text" name="miasto_rej" value='.$_SESSION['citySession'].'>
+                        </div>
+                        <div class="half-inputs--element">
+                            <label for="post-code">postcode*</label>
+                            <input required type="text" name="kod_pocztowy_rej" value='.$_SESSION['zipCodeSession'].'>
+                        </div>
+                    </div>
+                    </div>';
+                } else {
+                    echo '<h1>billing Details</h1>
                     <div class="half-inputs">
                         <div class="half-inputs--element">
                             <label for="last-name">first name*</label>
-                            <input required type="text" name="imie_rej" value="<?php
-                         if(isset($_SESSION['zap_imie']))
-                         {
-                             echo $_SESSION['zap_imie'];
-                             unset ($_SESSION['zap_imie']);
-                            }
-
-                            ?>">
+                            <input required type="text" name="imie_rej">
                         </div>
                         <div class="half-inputs--element">
                             <label for="last-name">last name*</label>
-                            <input required type="text" name="nazwisko_rej" value="<?php
-                         if(isset($_SESSION['zap_nazwisko']))
-                         {
-                             echo $_SESSION['zap_nazwisko'];
-                             unset ($_SESSION['zap_nazwisko']);
-                            }
-
-                            ?>">
+                            <input required type="text" name="nazwisko_rej">
                         </div>
                     </div>
   
                     <label for="address">address*</label>
-                    <input type="text" class="full-inputs" placeholder="Street address" id="address" required>
+                    <input type="text" class="full-inputs" id="address" required>
 
 
                     <div class="half-inputs">
                         <div class="half-inputs--element">
                             <label for="town-city">town/city*</label>
-                            <input required type="text" name="miasto_rej" value="<?php
-                         if(isset($_SESSION['zap_miasto']))
-                         {
-                             echo $_SESSION['zap_miasto'];
-                             unset ($_SESSION['zap_miasto']);
-                            }
-
-                            ?>">
+                            <input required type="text" name="miasto_rej">
                         </div>
                         <div class="half-inputs--element">
                             <label for="post-code">postcode*</label>
-                            <input required type="text" name="kod_pocztowy_rej" value="<?php
-                         if(isset($_SESSION['zap_kod_pocztowy']))
-                         {
-                             echo $_SESSION['zap_kod_pocztowy'];
-                             unset ($_SESSION['zap_kod_pocztowy']);
-                            }
-
-                            ?>">
+                            <input required type="text" name="kod_pocztowy_rej">
                         </div>
                     </div>
                     <div class="half-inputs">
                         <div class="half-inputs--element">
                             <label for="email-address">email address*</label>
-                            <input required type="text" name="email_rej" value="<?php
-                         if(isset($_SESSION['zap_email']))
-                         {
-                             echo $_SESSION['zap_email'];
-                             unset ($_SESSION['zap_email']);
-                            }
-
-                            ?>">
+                            <input required type="text" name="email_rej">
                         </div>
                         <div class="half-inputs--element">
                             <label for="phone">phone*</label>
-                            <input required type="text" name="tel_rej" value="<?php
-                         if(isset($_SESSION['zap_tel']))
-                         {
-                             echo $_SESSION['zap_tel'];
-                             unset ($_SESSION['zap_tel']);
-                            }
-
-                            ?>">
+                            <input required type="text" name="tel_rej">
                         </div>
                     </div>
                     <div class="checkbox-row">
                         <input required type="checkbox" name="check">
                         <label for="">I have read and accept the <a href="#">Terms &
                             conditions</a></label>
-                        <?php
-                                if(isset($_SESSION['blad_regulamin'])){
-                                    echo "<div class='blad form__error'>".$_SESSION['blad_regulamin']."</div>";
-                                    unset($_SESSION['blad_regulamin']);
-                                }
-                            ?>
-                    </div>
+                    </div>';
+                }
+                ?>
                 </form>
-                <form action="logowanie.php" id="login-form-checkout" method="post">
+                <form action="login-action-checkout.php" id="login-form-checkout" method="post">
                     <label for="login">login</label>
                     <input type="text" id="login" required name="login">
                     <label for="password">password</label>
-                    <input type="password" id="password" required name="haslo">
+                    <input type="password" id="password" required name="password">
+                    <?php
+                    if(isset($_SESSION['errorLoginCheckout'])){
+                        echo $_SESSION['errorLoginCheckout'];
+                        unset($_SESSION['errorLoginCheckout']);
+                    }
+                    ?> 
+                    <input type="submit" value="Log in" name="submit">
                 </form>
             </div>
 
@@ -313,9 +182,8 @@
                     <input type="radio" name="payment"><label for="">cheque payment</label> <br>
                     <input type="radio" name="payment"><label for="">paypal</label>
                 </form>
-                <input type="submit" value="place order" name="submit" form="login-form-checkout">
+                <input type="submit" value="place order" name="submit" form="form-with-personal-data">
             </div>
-
         </div>
     </section>
 

@@ -2012,3 +2012,37 @@ body {
     justify-content: flex-end;
   }
 }
+
+.register-error-message {
+  color: red;
+  margin-bottom: 1em;
+  font-size: 1rem;
+}
+
+.register-error-message-top {
+  margin-top: 1em;
+}
+
+
+
+.navbar--list__link-fixed {
+
+  .subpage-input {
+    width: 80px;
+    height: 2em;
+    border: 1px solid $red-color;
+    background-color: transparent;
+    color: $red-color;
+    transition: .2s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $red-color;
+      color: black;
+    }
+  }
+}
+
+.navbar--list__link-fixed:hover:after {
+  width: 0px;
+}

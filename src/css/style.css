@@ -1610,3 +1610,26 @@ body {
     margin-top: -40px;
     display: flex;
     justify-content: flex-end; }
+
+.register-error-message {
+  color: red;
+  margin-bottom: 1em;
+  font-size: 1rem; }
+
+.register-error-message-top {
+  margin-top: 1em; }
+
+.navbar--list__link-fixed .subpage-input {
+  width: 80px;
+  height: 2em;
+  border: 1px solid #e9b300;
+  background-color: transparent;
+  color: #e9b300;
+  transition: .2s;
+  cursor: pointer; }
+  .navbar--list__link-fixed .subpage-input:hover {
+    background-color: #e9b300;
+    color: black; }
+
+.navbar--list__link-fixed:hover:after {
+  width: 0px; }

@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once "polaczenie.php";
+    require_once "connection.php";
     $connection = @new mysqli($host,$db_user,$db_password,$db_name);
 ?>
 <!DOCTYPE html>
@@ -31,21 +31,16 @@
             <li><a href="pizza-builder.php" class="navbar--list__link">pizza builder</a></li>
             <li><a href="index.php#about-us" class="navbar--list__link">about us</a></li>
             <li><a href="#contact" class="navbar--list__link">contact</a></li>
-            <li class="list-special">
+            <li>
                 <?php
-
                     if((isset($_SESSION["zalogowany"]))&&($_SESSION["zalogowany"]==True)){
-                        echo '<p>'.$_SESSION['user'].'</p>';
-                        // echo '<i class="far fa-user fa-2x"></i>';
-                        // echo '<a href="account-settings.php"><p>'.$_SESSION['user'].'</p></a>';
-                        echo '<a href="wyloguj.php" class="navbar--list__link link-special"><input type="button" value="Logout" class="subpage-input"></a>';
-                    //                  echo "<span>".$_SESSION['user']."</span>";
+                        echo '<a class="navbar--list__link navbar--list__link-fixed">'.$_SESSION['user'].'</a>';
+                        echo '<a href="logout.php" class="navbar--list__link navbar--list__link-fixed"><input type="button" value="Logout" class="subpage-input"></a>';
                     }
                     else{
-                        // echo '<input type="button" id="btn-to-login" value="Log In" class="subpage-input">';
                         echo '<a href="login.php" class="navbar--list__link special" value="Log In">login</a>';
                     }
-                    ?>
+                ?>
             </li>
         </ul>
     </nav>
