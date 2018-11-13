@@ -31,6 +31,7 @@
             <li><a href="pizza-builder.php" class="navbar--list__link">pizza builder</a></li>
             <li><a href="index.php#about-us" class="navbar--list__link">about us</a></li>
             <li><a href="#contact" class="navbar--list__link">contact</a></li>
+            <li><a href="checkout.php" class="navbar--list__link">checkout</a></li>
             <li>
                 <?php
                     if((isset($_SESSION["zalogowany"]))&&($_SESSION["zalogowany"]==True)){
@@ -107,6 +108,14 @@
             <div class="pizza-menu--list__line"></div>
         </div>
         <div class="pizza-menu__checkout">
+        <div class="pop-up">
+            <div class="icon">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="text">
+                <p>Items are added to card!</p>
+            </div>
+        </div>
             <h1>Your Order</h1>
             <div class="order--products-total">
                 <p>product</p>
@@ -135,6 +144,7 @@
         </div>
     </section>
     <section class="newsletter">
+        
         <div class="newsletter--text">
             <div class="newsletter--text__heading">
                 <h1>Sign up for the newsletter and coupons!</h1>

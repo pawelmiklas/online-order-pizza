@@ -71,10 +71,17 @@ const CheckCircle = (() => {
     });
   });
 
-  let checkoutIngridients = (link) => {
+  let checkoutIngridients = (link, popUp) => {
     if (finalPrice === 0 || sizeName === '') {
       alert(`Choose some ingridients to your pizza bro!`);
     } else {
+      if (popUp == 'yes') {
+        let popUp = document.querySelector('.pop-up');
+        popUp.classList.toggle("added-to-card");
+        setTimeout(() => {
+          popUp.classList.toggle("added-to-card");
+        }, 3000);
+      }
       const customPizza = `custom pizza ${j}`;
       checkout.push({
         name: customPizza,
@@ -89,15 +96,18 @@ const CheckCircle = (() => {
       } else {
         localStorage.setItem('pizzaMenuBuilder', JSON.stringify(checkout));
       }
-      window.location.href = `${link}`;
+      setTimeout(() => {
+        window.location.href = `${link}`;
+      }, 2000);
     }
   }
 
   createAnother.addEventListener('click', () => {
-    checkoutIngridients('pizza-builder.php');
+    checkoutIngridients('pizza-builder.php', 'yes');
+
   })
   addToCard.addEventListener('click', () => {
-    checkoutIngridients('checkout.php');
+    checkoutIngridients('checkout.php', 'no');
   });
 })();
 export {

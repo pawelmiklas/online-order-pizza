@@ -44,6 +44,7 @@
             <li><a href="#pizza-builder" class="navbar--list__link">pizza builder</a></li>
             <li><a href="#about-us" class="navbar--list__link">about us</a></li>
             <li><a href="#contact" class="navbar--list__link">contact</a></li>
+            <li><a href="checkout.php" class="navbar--list__link">checkout</a></li>
             <li>
                 <?php
                     if((isset($_SESSION["zalogowany"]))&&($_SESSION["zalogowany"]==True)){

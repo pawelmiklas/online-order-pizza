@@ -69,11 +69,24 @@ const CheckPizzaAtMenu = (() => {
 	})
 
 	addToCard.addEventListener('click', function () {
-		if (localStorage.getItem('pizzaMenu')) {
-			let clientsArr = JSON.parse(localStorage.getItem('pizzaMenu'));
-			localStorage.setItem('pizzaMenu', JSON.stringify([...checkoutPizza, ...clientsArr]));
+		console.log(checkoutPizza.length);
+		if (checkoutPizza.length > 0) {
+			let popUp = document.querySelector('.pop-up');
+			popUp.classList.toggle("added-to-card");
+			setTimeout(() => {
+				popUp.classList.toggle("added-to-card");
+			}, 3000);
+			setTimeout(() => {
+				window.location.href = 'pizza-menu.php';
+			}, 3000);
+			if (localStorage.getItem('pizzaMenu')) {
+				let clientsArr = JSON.parse(localStorage.getItem('pizzaMenu'));
+				localStorage.setItem('pizzaMenu', JSON.stringify([...checkoutPizza, ...clientsArr]));
+			} else {
+				localStorage.setItem('pizzaMenu', JSON.stringify(checkoutPizza));
+			}
 		} else {
-			localStorage.setItem('pizzaMenu', JSON.stringify(checkoutPizza));
+			alert('Pick some pizzas!');
 		}
 	});
 })();
