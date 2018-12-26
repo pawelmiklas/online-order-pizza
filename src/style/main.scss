@@ -13,7 +13,7 @@ body {
 }
 
 .banner {
-    background-image: url(../static/banner-pizza.png);
+    background-image: url(static/banner-pizza.png);
     width: 100%;
     height: 100vh;
     background-repeat: no-repeat;
@@ -208,7 +208,7 @@ body {
 //about
 .about {
     min-height: 700px;
-    background-image: url(../static/black-background.png);
+    background-image: url(static/black-background.png);
     display: flex;
     justify-content: center;
     width: 100%;
@@ -310,7 +310,7 @@ body {
 .footer {
     width: 100%;
     min-height: 400px;
-    background-image: url(../static/black-background.png);
+    background-image: url(static/black-background.png);
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -433,7 +433,7 @@ body {
 // ingridients
 .ingridients {
     width: 100%;
-    background-image: url(../static/vegetables-background.png);
+    background-image: url(static/vegetables-background.png);
     min-height: 500px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -525,7 +525,7 @@ body {
 .build-pizza {
     width: 100%;
     min-height: 800px;
-    background-image: url(../static/black-background.png);
+    background-image: url(static/black-background.png);
     color: white;
     display: flex;
     align-items: center;
@@ -775,7 +775,7 @@ body {
 .newsletter {
     position: relative;
     height: 300px;
-    background-image: url(../static/food.png);
+    background-image: url(static/food.png);
 }
 
 .newsletter--text {
@@ -839,7 +839,7 @@ body {
 .opinions {
     width: 100%;
     min-height: 800px;
-    background-image: url(../static/black-background.png);
+    background-image: url(static/black-background.png);
     display: flex;
     justify-content: center;
     color: $font-color;
@@ -992,7 +992,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    background-image: url(../static/gray-bg.png);
+    background-image: url(static/gray-bg.png);
     @media screen and (max-width: 1000px) {
         min-height: 400px;
         height: auto;
@@ -1063,7 +1063,7 @@ body {
 .banner-pizza-builder {
     width: 100%;
     height: 300px;
-    background-image: url(../static/food-bg.png);
+    background-image: url(static/food-bg.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 10% 65%;
@@ -1247,7 +1247,7 @@ body {
 .pizza-menu {
     width: 100%;
     min-height: 800px;
-    background-image: url(../static/black-background.png);
+    background-image: url(static/black-background.png);
     color: white;
     display: flex;
     flex-direction: row;
@@ -1483,7 +1483,7 @@ body {
 //checkout
 .checkout {
     width: 100%;
-    background-image: url(../static/black-background.png);
+    background-image: url(static/black-background.png);
     min-height: 760px;
     display: flex;
     justify-content: center;
@@ -1752,7 +1752,7 @@ body {
 .login {
     width: 100%;
     min-height: calc(100vh - 70px);
-    background-image: url(../static/food.png);
+    background-image: url(static/food.png);
     display: flex;
     flex-direction: colum;
     justify-content: center;
