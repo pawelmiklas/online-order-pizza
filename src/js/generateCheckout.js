@@ -3,21 +3,21 @@ const GenerateCheckout = (() => {
 	let sessionCheckoutBuilder = JSON.parse(localStorage.getItem('pizzaMenuBuilder'));
 	let totalPriceCheckout = document.querySelector('#checkout-order-total-price');
 	let productList = document.querySelector('.order--products-list');
-	let inputRadio = document.querySelectorAll(".input-radio");
-	let firstForm = document.querySelector("#form-with-personal-data");
-	let secondForm = document.querySelector("#login-form-checkout");
+	let inputRadio = document.querySelectorAll('.input-radio');
+	let firstForm = document.querySelector('#form-with-personal-data');
+	let secondForm = document.querySelector('#login-form-checkout');
 	let totalPrice = 0;
 	inputRadio.forEach(input => {
-		input.addEventListener("change", () => {
+		input.addEventListener('change', () => {
 			if (input.checked && input.getAttribute('data-value') == 'yes') {
-				firstForm.style.display = "none";
-				secondForm.style.display = "flex";
+				firstForm.style.display = 'none';
+				secondForm.style.display = 'flex';
 			} else {
-				firstForm.style.display = "block";
-				secondForm.style.display = "none";
+				firstForm.style.display = 'block';
+				secondForm.style.display = 'none';
 			}
-		})
-	})
+		});
+	});
 	if (sessionCheckout) {
 		sessionCheckout.forEach(({
 			name,
@@ -61,7 +61,7 @@ const GenerateCheckout = (() => {
 
 
 	totalPriceCheckout.innerHTML = `$${totalPrice.toFixed(2)}`;
-})();
+});
 export {
 	GenerateCheckout
 };

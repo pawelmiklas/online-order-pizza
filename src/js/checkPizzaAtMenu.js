@@ -3,41 +3,41 @@ const CheckPizzaAtMenu = (() => {
 	let listOfPizzas = document.querySelector('#list-of-pizzas');
 	let totalPrice = document.querySelector('#total-price');
 	const addToCard = document.querySelector('#add-to-card');
-	let formPizza = document.querySelectorAll(".form-pizza");
+	let formPizza = document.querySelectorAll('.form-pizza');
 	formPizza.forEach((form) => {
-		let amountPizzaInput = form.querySelector("#amount-pizza-input");
-		let amountMinus = form.querySelector("#minus");
-		let amountPlus = form.querySelector("#plus");
-		let submit = form.querySelector(".submit-to-add");
+		let amountPizzaInput = form.querySelector('#amount-pizza-input');
+		let amountMinus = form.querySelector('#minus');
+		let amountPlus = form.querySelector('#plus');
+		let submit = form.querySelector('.submit-to-add');
 		let name = form.getAttribute('data-name');
 		let countMoney = () => {
 			const totalMoney = checkoutPizza.reduce((acc, item) => acc + item.price, 0);
 			totalPrice.innerHTML = `$${totalMoney.toFixed(2)}`;
 		};
-		amountPlus.addEventListener("click", () => {
+		amountPlus.addEventListener('click', () => {
 			let amount = amountPizzaInput.value;
 			if (amount == 99) {
-				return
+				return;
 			} else {
 				amount = +amount;
 				amount += 1;
 				amountPizzaInput.value = amount;
 			}
-		})
-		amountMinus.addEventListener("click", () => {
+		});
+		amountMinus.addEventListener('click', () => {
 			let amount = amountPizzaInput.value;
 			if (amount == 99 || amount == 1) {
-				return
+				return;
 			} else {
 				amount = +amount;
 				amount -= 1;
 				amountPizzaInput.value = amount;
 			}
-		})
-		submit.addEventListener("click", () => {
+		});
+		submit.addEventListener('click', () => {
 			let selectValue = form.querySelector(`#${name}`);
-			let selectValuePrice = selectValue.getAttribute("data-price");
-			let selectValueSizeName = selectValue.options[selectValue.selectedIndex].getAttribute("data-sizename");
+			let selectValuePrice = selectValue.getAttribute('data-price');
+			let selectValueSizeName = selectValue.options[selectValue.selectedIndex].getAttribute('data-sizename');
 			selectValuePrice = +selectValuePrice;
 			let thisValue = parseFloat(selectValue.value);
 			let amountPizzas = amountPizzaInput.value;
@@ -65,19 +65,19 @@ const CheckPizzaAtMenu = (() => {
 				amountPizzaInput.value = 1;
 			}
 
-		})
-	})
+		});
+	});
 
-	addToCard.addEventListener('click', function () {
+	addToCard.addEventListener('click', () => {
 		console.log(checkoutPizza.length);
 		if (checkoutPizza.length > 0) {
 			let popUp = document.querySelector('.pop-up');
-			popUp.classList.toggle("added-to-card");
+			popUp.classList.toggle('added-to-card');
 			setTimeout(() => {
-				popUp.classList.toggle("added-to-card");
+				popUp.classList.toggle('added-to-card');
 			}, 3000);
 			setTimeout(() => {
-				window.location.href = 'pizza-menu.php';
+				window.location.href = 'pizza-menu.html';
 			}, 3000);
 			if (localStorage.getItem('pizzaMenu')) {
 				let clientsArr = JSON.parse(localStorage.getItem('pizzaMenu'));
@@ -89,7 +89,7 @@ const CheckPizzaAtMenu = (() => {
 			alert('Pick some pizzas!');
 		}
 	});
-})();
+});
 export {
 	CheckPizzaAtMenu
 };
