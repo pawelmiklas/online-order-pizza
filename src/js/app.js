@@ -8,10 +8,13 @@ import { CheckPizzaAtMenu } from './checkPizzaAtMenu';
 import { CheckCircle } from './checkCircle';
 if (location.pathname === '/' || '/index.html') {
 	DropdownList();
-} else if (location.pathname === '/pizza-menu.html') {
+}
+if (location.pathname === '/pizza-menu.html') {
 	CheckPizzaAtMenu();
-} else if (location.pathname === '/pizza-builder.html') {
+}
+if (location.pathname === '/pizza-builder.html') {
 	CheckCircle();
-} else if (location.pathname === '/checkout.html') {
+}
+if (location.pathname === '/checkout.html') {
 	GenerateCheckout();
 }
