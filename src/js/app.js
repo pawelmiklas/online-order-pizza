@@ -6,15 +6,14 @@ import { DropdownList } from './dropdownList';
 import { GenerateCheckout } from './generateCheckout';
 import { CheckPizzaAtMenu } from './checkPizzaAtMenu';
 import { CheckCircle } from './checkCircle';
-if (location.pathname === '/' || '/index.html') {
-	DropdownList();
-}
-if (location.pathname === '/pizza-menu.html') {
-	CheckPizzaAtMenu();
-}
-if (location.pathname === '/pizza-builder.html') {
-	CheckCircle();
-}
-if (location.pathname === '/checkout.html') {
-	GenerateCheckout();
-}
+document.addEventListener('DOMContentLoaded', () => {
+	if (location.pathname === '/online-order-pizza/dist/pizza-menu.html') {
+		CheckPizzaAtMenu();
+	} else if (location.pathname === '/online-order-pizza/dist/pizza-builder.html') {
+		CheckCircle();
+	} else if (location.pathname === '/online-order-pizza/dist/checkout.html') {
+		GenerateCheckout();
+	} else if (location.pathname === '/' || '/index.html') {
+		DropdownList();
+	}
+});
